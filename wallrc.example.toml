@@ -1,0 +1,5 @@
+[general]
+minutes = 0.25       # Time each wallpaper is displayed (in minutes)
+theme = "default"    # Theme folder name (inside themes/)
+shuffle = false      # Randomize order instead of cycling sequentially
+scaling = "fill"     # fill, fit, stretch, center, tile, or span
