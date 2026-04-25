@@ -3,7 +3,7 @@ setlocal
 
 set "SCRIPT_DIR=%~dp0"
 set "TASK_NAME=wallChange"
-set "PYTHON=python"
+set "PYTHON=pythonw"
 
 if "%1"=="uninstall" goto uninstall
 
@@ -30,7 +30,7 @@ goto end
 echo Uninstalling wallChange...
 
 :: Stop the running task
-taskkill /f /fi "WINDOWTITLE eq wallChange*" >nul 2>&1
+powershell -NoProfile -Command "Get-CimInstance Win32_Process | Where-Object { $_.Name -eq 'pythonw.exe' -and $_.CommandLine -like '*wallchange.py*' } | ForEach-Object { Stop-Process -Id $_.ProcessId -Force }" >nul 2>&1
 schtasks /delete /tn "%TASK_NAME%" /f >nul 2>&1
 
 echo wallChange removed.
